@@ -1,0 +1,13 @@
+# This compose file only contains the basic services needed for this module to work.
+version: '3'
+services:
+  online-reviewers:
+    image: online-reviewers
+    network_mode: "host"
+    environment:
+      - GERRIT_URL
+      - GERRIT_USERNAME
+      - GERRIT_PASSWORD
+      - REVIEWERS_HOSTS
+      - REVIEWERS_MAC_ADDRESS
+
