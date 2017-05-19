@@ -1,13 +1,18 @@
 from nmap import PortScanner
+import csv
+import requests
 import os
 
-mac_dev_file = os.getenv('REVIEWERS_MAC_ADDRESS')
-devs = {dev.split(' ')[0]: dev.split(' ')[1] for dev in mac_dev_file.split(';')}
+url = os.getenv('REVIEWERS_URL')
+response = requests.get(url)
+data = response.content
+reader = csv.reader(data.splitlines(), delimiter=',')
+
+devs = {dev[2]: dev[1] for dev in list(reader)}
 ps = PortScanner()
 
 def is_dev(ip):
     mac = ps[ip]['addresses'].get('mac', 'SEM MAC')
-    print ps[ip]
     return mac in devs
 
 

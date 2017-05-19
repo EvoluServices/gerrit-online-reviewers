@@ -9,5 +9,5 @@ services:
       - GERRIT_USERNAME
       - GERRIT_PASSWORD
       - REVIEWERS_HOSTS
-      - REVIEWERS_MAC_ADDRESS
+      - REVIEWERS_URL
 
